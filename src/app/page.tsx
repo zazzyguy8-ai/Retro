@@ -89,8 +89,8 @@ function DialUpIntro({ onComplete }: { onComplete: () => void }) {
 
   if (!isPlaying) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
-        <pre className="text-green-400 text-xs sm:text-sm mb-8 text-center leading-relaxed">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black px-4 overflow-hidden">
+        <pre className="text-green-400 text-[6px] sm:text-sm mb-8 text-center leading-relaxed">
 {`
  ██████╗  ██╗ █████╗ ██╗       ██╗   ██╗██████╗
  ██╔══██╗ ██║██╔══██╗██║       ██║   ██║██╔══██╗

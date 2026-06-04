@@ -144,18 +144,18 @@ function ThreadView({ post, onBack }: { post: ForumPost; onBack: () => void }) {
             <span className="font-bold">{post.authorIcon} {post.author}</span>
             <span>{post.date}</span>
           </div>
-          <div className="flex">
-            <div className="bg-gray-200 p-2 w-32 text-center border-r border-gray-400 shrink-0">
-              <div className="text-3xl mb-1">{post.authorIcon}</div>
+          <div className="flex flex-col sm:flex-row">
+            <div className="bg-gray-200 p-2 sm:w-32 text-center border-b sm:border-b-0 sm:border-r border-gray-400 shrink-0 flex sm:flex-col items-center sm:items-center gap-2 sm:gap-0">
+              <div className="text-2xl sm:text-3xl sm:mb-1">{post.authorIcon}</div>
               <div className="font-bold text-[10px]">{post.author}</div>
-              <div className="text-[9px] text-gray-500 mt-1">Posts: {Math.floor(Math.random() * 500) + 50}</div>
-              <div className="text-[9px] text-gray-500">Joined: Jan 1997</div>
+              <div className="text-[9px] text-gray-500 hidden sm:block mt-1">Posts: {Math.floor(Math.random() * 500) + 50}</div>
+              <div className="text-[9px] text-gray-500 hidden sm:block">Joined: Jan 1997</div>
             </div>
-            <div className="p-3 flex-1">
+            <div className="p-2 sm:p-3 flex-1 min-w-0">
               {post.content.split("\n").map((line, i) => (
-                <p key={i} className="mb-1">{line}</p>
+                <p key={i} className="mb-1 break-words">{line}</p>
               ))}
-              <div className="mt-4 pt-2 border-t border-gray-300 text-[9px] text-gray-500 whitespace-pre-line font-mono">
+              <div className="mt-4 pt-2 border-t border-gray-300 text-[9px] text-gray-500 whitespace-pre-line font-mono overflow-x-auto">
                 {post.signature}
               </div>
             </div>
@@ -169,15 +169,14 @@ function ThreadView({ post, onBack }: { post: ForumPost; onBack: () => void }) {
               <span className="font-bold">{reply.icon} {reply.author}</span>
               <span>{reply.date}</span>
             </div>
-            <div className="flex">
-              <div className="bg-gray-100 p-2 w-32 text-center border-r border-gray-300 shrink-0">
-                <div className="text-2xl mb-1">{reply.icon}</div>
+            <div className="flex flex-col sm:flex-row">
+              <div className="bg-gray-100 p-2 sm:w-32 text-center border-b sm:border-b-0 sm:border-r border-gray-300 shrink-0 flex sm:flex-col items-center sm:items-center gap-2 sm:gap-0">
+                <div className="text-xl sm:text-2xl sm:mb-1">{reply.icon}</div>
                 <div className="font-bold text-[10px]">{reply.author}</div>
-                <div className="text-[9px] text-gray-500">Posts: {Math.floor(Math.random() * 300) + 10}</div>
               </div>
-              <div className="p-3 flex-1">
-                <p>{reply.text}</p>
-                <div className="mt-3 pt-2 border-t border-gray-200 text-[9px] text-gray-500 whitespace-pre-line font-mono">
+              <div className="p-2 sm:p-3 flex-1 min-w-0">
+                <p className="break-words">{reply.text}</p>
+                <div className="mt-3 pt-2 border-t border-gray-200 text-[9px] text-gray-500 whitespace-pre-line font-mono overflow-x-auto">
                   {reply.sig}
                 </div>
               </div>
@@ -254,7 +253,7 @@ export default function ForumPage() {
                   </button>
                 )}
               </div>
-              <div className="grid sm:grid-cols-2 gap-0 border border-gray-300">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-gray-300">
                 {CATEGORIES.map((cat) => (
                   <div
                     key={cat.name}
@@ -277,9 +276,9 @@ export default function ForumPage() {
             <div>
               <div className="bg-[#000080] text-white px-2 py-1 text-xs font-bold flex">
                 <span className="flex-1">Thread</span>
-                <span className="w-16 text-center">Replies</span>
-                <span className="w-16 text-center">Views</span>
-                <span className="w-24 text-center">Last Reply</span>
+                <span className="w-12 sm:w-16 text-center hidden sm:block">Replies</span>
+                <span className="w-12 sm:w-16 text-center hidden sm:block">Views</span>
+                <span className="w-10 sm:w-24 text-center">💬</span>
               </div>
               {filteredPosts.map((post) => (
                 <div
@@ -289,17 +288,17 @@ export default function ForumPage() {
                     post.isSticky ? "bg-yellow-50" : ""
                   }`}
                 >
-                  <div className="flex-1">
-                    <div className="font-bold text-[#000080] hover:underline">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-[#000080] hover:underline truncate">
                       {post.title}
                     </div>
-                    <div className="text-[10px] text-gray-500">
+                    <div className="text-[10px] text-gray-500 truncate">
                       by {post.authorIcon} {post.author} — {post.date}
                     </div>
                   </div>
-                  <div className="w-16 text-center text-gray-600">{post.replies}</div>
-                  <div className="w-16 text-center text-gray-600">{post.views.toLocaleString()}</div>
-                  <div className="w-24 text-center text-[10px] text-gray-500">{post.lastReply}</div>
+                  <div className="w-12 sm:w-16 text-center text-gray-600 hidden sm:block">{post.replies}</div>
+                  <div className="w-12 sm:w-16 text-center text-gray-600 hidden sm:block">{post.views.toLocaleString()}</div>
+                  <div className="w-10 sm:w-24 text-center text-[10px] text-gray-500 shrink-0">{post.replies}</div>
                 </div>
               ))}
             </div>

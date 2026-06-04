@@ -132,9 +132,9 @@ function StatusBar({ timeSpent, limit }: { timeSpent: number; limit: number }) {
   const pct = Math.min(100, (timeSpent / limit) * 100);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[9990] bg-[#c0c0c0] border-t-2 border-gray-400 px-2 py-0.5 flex items-center gap-3 text-[10px] font-[Tahoma,Arial,sans-serif] text-black">
-      <span>⏰ Online: {formatTime(timeSpent)}</span>
-      <div className="flex-1 max-w-[200px] dialup-progress h-3">
+    <div className="fixed bottom-0 left-0 right-0 z-[9990] bg-[#c0c0c0] border-t-2 border-gray-400 px-2 py-0.5 flex items-center gap-1 sm:gap-3 text-[9px] sm:text-[10px] font-[Tahoma,Arial,sans-serif] text-black">
+      <span className="shrink-0">⏰ {formatTime(timeSpent)}</span>
+      <div className="flex-1 max-w-[80px] sm:max-w-[200px] dialup-progress h-3">
         <div
           className="h-full transition-all duration-1000"
           style={{
@@ -143,12 +143,12 @@ function StatusBar({ timeSpent, limit }: { timeSpent: number; limit: number }) {
           }}
         />
       </div>
-      <span className={pct > 80 ? "text-red-600 font-bold" : ""}>
-        {formatTime(remaining)} left
+      <span className={`shrink-0 ${pct > 80 ? "text-red-600 font-bold" : ""}`}>
+        {formatTime(remaining)}
       </span>
-      <span className="text-gray-500">|</span>
-      <span className="text-gray-500">
-        {isWeekend() ? "🌿 Weekend mode (1h)" : "📅 Weekday (2h)"}
+      <span className="text-gray-500 hidden sm:inline">|</span>
+      <span className="text-gray-500 hidden sm:inline">
+        {isWeekend() ? "🌿 Weekend (1h)" : "📅 Weekday (2h)"}
       </span>
     </div>
   );

@@ -266,7 +266,7 @@ function ProfilePreview({ config }: { config: ProfileConfig }) {
 
   return (
     <div
-      className={`${config.background} min-h-[600px] p-4`}
+      className={`${config.background} min-h-[600px] p-2 sm:p-4 overflow-hidden`}
       style={{ color: config.textColor, fontFamily: config.font, cursor: config.cursor }}
     >
       {/* Under construction */}
@@ -292,12 +292,12 @@ function ProfilePreview({ config }: { config: ProfileConfig }) {
       {/* Header */}
       <div className="text-center mb-6">
         <h1
-          className="text-3xl sm:text-4xl font-bold mb-2 fire-text"
+          className="text-xl sm:text-4xl font-bold mb-2 fire-text break-words"
           style={{ fontFamily: "Impact, 'Arial Black', sans-serif" }}
         >
           {config.username}&apos;s Homepage
         </h1>
-        <p className="text-lg italic opacity-80">{config.tagline}</p>
+        <p className="text-sm sm:text-lg italic opacity-80 break-words">{config.tagline}</p>
         <hr className="retro my-3" />
       </div>
 
@@ -393,18 +393,18 @@ function ProfilePreview({ config }: { config: ProfileConfig }) {
           </div>
           <div className="bg-black/40 p-2 border border-current/20">
             <div className="text-xs mb-1 font-bold">✍️ Leave a message:</div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 placeholder="Your name..."
-                className="win95-border-inset px-2 py-1 bg-white text-black text-xs flex-1"
+                className="win95-border-inset px-2 py-1 bg-white text-black text-xs w-full sm:flex-1"
               />
               <input
                 type="text"
                 placeholder="Your message..."
-                className="win95-border-inset px-2 py-1 bg-white text-black text-xs flex-[2]"
+                className="win95-border-inset px-2 py-1 bg-white text-black text-xs w-full sm:flex-[2]"
               />
-              <button className="win95-button text-xs">Sign!</button>
+              <button className="win95-button text-xs shrink-0">Sign!</button>
             </div>
           </div>
         </div>
@@ -475,7 +475,7 @@ export default function ProfilePage() {
             {/* Preview */}
             <div className={showEditor ? "order-1 lg:order-2" : ""}>
               <Win95Window title={`🌐 Preview — ${config.username}'s Homepage`}>
-                <div className="win95-border-inset overflow-auto max-h-[80vh]">
+                <div className="win95-border-inset overflow-hidden max-h-[80vh] overflow-y-auto">
                   <ProfilePreview config={config} />
                 </div>
               </Win95Window>
