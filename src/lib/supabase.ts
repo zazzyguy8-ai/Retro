@@ -1,7 +1,8 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+// Env vars with hardcoded fallbacks (anon key is public by design)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://pnjbnfpmwnxjdlaxplcs.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_KYxSoFEFkMl8ibVF3V4i1Q_XuGqJwfp";
 
 const isConfigured = supabaseUrl.startsWith("http") && supabaseAnonKey.length > 0;
 
